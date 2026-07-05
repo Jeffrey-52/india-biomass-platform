@@ -203,7 +203,6 @@
   .flowline{height:1px;background:repeating-linear-gradient(90deg,var(--line-2) 0 6px,transparent 6px 12px);margin:26px 0 4px}
 
   /* ---------- roadmap ---------- */
-  #roadmap{background:var(--husk-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   @media(max-width:860px){.phases{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.phases{grid-template-columns:1fr}}
@@ -300,9 +299,6 @@
       <a href="#context">The gap</a>
       <a href="#calculator">Estimator</a>
       <a href="#map">Map</a>
-      <a href="#pipeline">Pipeline</a>
-      <a href="#roadmap">Roadmap</a>
-      <a class="nav-tag" href="#build">Portfolio build</a>
     </div>
   </div>
 </nav>
@@ -336,7 +332,6 @@
         <p class="lead reveal">India produces close to half a billion tonnes of crop residue a year. Most of it is untracked, and a large share is simply burned. IBIP turns scattered government data into an answer to one question: <em>how much energy is really out there, and where?</em></p>
         <div class="hero-cta reveal">
           <a class="btn btn-primary" href="#calculator">Try the estimator <span class="arw">→</span></a>
-          <a class="btn btn-ghost" href="#pipeline">See how it works</a>
         </div>
       </div>
       <div class="ticker reveal" aria-label="Indicative national figures">
@@ -545,85 +540,6 @@
   </div>
 </section>
 
-<!-- PIPELINE -->
-<section id="pipeline">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Architecture</span>
-      <h2>From a government PDF to a decision, in one line.</h2>
-      <p>The platform is a pipeline. Each stage hands clean, structured output to the next — the same shape a data-engineering team would recognise in production.</p>
-    </div>
-    <div class="pipe">
-      <div class="node reveal"><span class="ico">🏛️</span><div class="step">01 · SOURCE</div><h3>Government data</h3><p>Crop production by state &amp; district, scraped from official agriculture portals.</p></div>
-      <div class="node reveal"><span class="ico">🐍</span><div class="step">02 · INGEST</div><h3>Python scrapers</h3><p><span class="mono">requests</span> + <span class="mono">BeautifulSoup</span> collect tables; <span class="mono">pandas</span> parses them.</p></div>
-      <div class="node reveal"><span class="ico">🧹</span><div class="step">03 · CLEAN</div><h3>Cleaning pipeline</h3><p>251 messy columns reconciled into a tidy, queryable schema.</p></div>
-      <div class="node reveal"><span class="ico">🗄️</span><div class="step">04 · STORE</div><h3>Database</h3><p>SQLite as a single source of truth for every crop, year and place.</p></div>
-    </div>
-    <div class="flowline"></div>
-    <div class="pipe" style="margin-top:8px">
-      <div class="node reveal"><span class="ico">⚖️</span><div class="step">05 · ESTIMATE</div><h3>Biomass calculator</h3><p>Production × residue ratio × collection → recoverable biomass.</p></div>
-      <div class="node reveal"><span class="ico">🗺️</span><div class="step">06 · MAP</div><h3>GIS analysis</h3><p>QGIS puts potential on the map — state, district, catchment.</p></div>
-      <div class="node reveal"><span class="ico">📊</span><div class="step">07 · ASSESS</div><h3>Techno-economics &amp; LCA</h3><p>CAPEX/OPEX and carbon footprint via OpenLCA.</p></div>
-      <div class="node reveal"><span class="ico">💬</span><div class="step">08 · ANSWER</div><h3>AI assistant</h3><p>“Which districts can support a 10 MW plant?” — asked in plain language.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ROADMAP -->
-<section id="roadmap">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Build order</span>
-      <h2>Nine phases, built one honest step at a time.</h2>
-      <p>Learning-first: each phase is a real, working slice of the platform rather than a tutorial exercise. Early phases are done.</p>
-    </div>
-    <div class="phases">
-      <div class="phase done reveal"><span class="flag">✓ done</span><div class="num">1</div><h3>Python fundamentals</h3><p>Variables, functions, DataFrames — learned by building, not by drills.</p><div class="tools"><span class="chip">python</span><span class="chip">pandas</span></div></div>
-      <div class="phase done reveal"><span class="flag">✓ started</span><div class="num">2</div><h3>Data acquisition</h3><p>First scrapers running; HTTP, status codes and bot-blocking understood.</p><div class="tools"><span class="chip">requests</span><span class="chip">bs4</span></div></div>
-      <div class="phase reveal"><div class="num">3</div><h3>Cleaning pipeline</h3><p>Turn 251-column raw tables into a tidy, trustworthy dataset.</p><div class="tools"><span class="chip">pandas</span></div></div>
-      <div class="phase reveal"><div class="num">4</div><h3>Database</h3><p>Persist everything queryably in a single store.</p><div class="tools"><span class="chip">SQLite</span></div></div>
-      <div class="phase reveal"><div class="num">5</div><h3>Biomass estimation</h3><p>Residue ratios and collection factors, applied at scale.</p><div class="tools"><span class="chip">python</span></div></div>
-      <div class="phase reveal"><div class="num">6</div><h3>GIS mapping</h3><p>Spatial potential by state and district.</p><div class="tools"><span class="chip">QGIS</span></div></div>
-      <div class="phase reveal"><div class="num">7</div><h3>Techno-economics</h3><p>CHP, PV, transport, CAPEX &amp; OPEX modelled.</p><div class="tools"><span class="chip">python</span></div></div>
-      <div class="phase reveal"><div class="num">8</div><h3>Life cycle assessment</h3><p>Carbon footprint, sensitivity and scenarios.</p><div class="tools"><span class="chip">OpenLCA</span></div></div>
-      <div class="phase reveal"><div class="num">9</div><h3>AI assistant</h3><p>Natural-language questions over the whole dataset.</p><div class="tools"><span class="chip">LLM</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- DEMONSTRATES -->
-<section id="build">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Why it exists</span>
-      <h2>A portfolio that proves the whole stack.</h2>
-    </div>
-    <div class="demo-grid">
-      <ul class="skill-list reveal">
-        <li><span class="s-k">python · pandas</span><span class="s-v">Data engineering from raw file to clean dataset</span></li>
-        <li><span class="s-k">web scraping</span><span class="s-v">Automated government-data acquisition</span></li>
-        <li><span class="s-k">sqlite</span><span class="s-v">A queryable single source of truth</span></li>
-        <li><span class="s-k">qgis</span><span class="s-v">Spatial resource assessment &amp; mapping</span></li>
-        <li><span class="s-k">openlca</span><span class="s-v">Life cycle assessment &amp; carbon accounting</span></li>
-        <li><span class="s-k">techno-econ</span><span class="s-v">CAPEX / OPEX plant feasibility</span></li>
-        <li><span class="s-k">ai / llm</span><span class="s-v">Natural-language querying layer</span></li>
-      </ul>
-      <div class="aud reveal">
-        <h3>Built for the people who hire for this</h3>
-        <p>A single project spanning the exact toolkit that sustainability, biomass and LCA teams look for — end to end, in the open.</p>
-        <div class="tags">
-          <span>Sustainability consultancies</span>
-          <span>Biomass &amp; bioenergy industry</span>
-          <span>Renewable energy firms</span>
-          <span>Fraunhofer institutes</span>
-          <span>TUM &amp; research groups</span>
-          <span>ESG / LCA roles</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="wrap">
     <div class="f-top">
@@ -636,16 +552,7 @@
           <h4>Explore</h4>
           <a href="#context">The gap</a>
           <a href="#calculator">Estimator</a>
-          <a href="#pipeline">Pipeline</a>
-          <a href="#roadmap">Roadmap</a>
-        </div>
-        <div class="f-col">
-          <h4>Stack</h4>
-          <a href="#build">Python · pandas</a>
-          <a href="#build">SQLite · QGIS</a>
-          <a href="#build">OpenLCA</a>
-          <a href="#build">AI assistant</a>
-        </div>
+                </div>
       </div>
     </div>
     <div class="rule"></div>
