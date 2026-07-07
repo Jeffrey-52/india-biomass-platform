@@ -7,7 +7,22 @@ This repository currently holds the **project's public landing page**: a single,
 `index.html` with a live, in-browser biomass estimator. It is designed to grow alongside the
 data-engineering pipeline described below.
 
-**Live demo:** _add your Vercel URL here once deployed_
+**Live demo:** **https://india-biomass-platform.vercel.app**
+
+---
+
+## Current status
+
+- ✅ Interactive biomass estimator (state × crop × collection efficiency)
+- ✅ Interactive India choropleth map (recoverable residue by state)
+- ✅ Live public landing page
+- 🔄 Government data pipeline (real CSVs → clean `data.json`)
+- ⬜ CHP sizing & techno-economics
+- ⬜ Life Cycle Assessment (LCA) module
+- ⬜ Natural-language query assistant
+- ⬜ Full dashboard
+
+*This is a learning-first project, built and released in layers. Each stage is usable on its own.*
 
 ---
 
@@ -55,23 +70,23 @@ python -m http.server 8000
 
 ## Roadmap (the wider platform)
 
-| Phase | Focus | Tools |
-|------:|-------|-------|
-| 1 | Python fundamentals | python, pandas |
-| 2 | Government data acquisition | requests, beautifulsoup4 |
-| 3 | Cleaning pipeline | pandas |
-| 4 | Database | SQLite |
-| 5 | Biomass estimation | python |
-| 6 | GIS mapping | QGIS |
-| 7 | Techno-economic analysis | python |
-| 8 | Life cycle assessment | OpenLCA |
-| 9 | AI assistant | LLM |
+| Phase | Focus | Tools | Status |
+|------:|-------|-------|:------:|
+| 1 | Python fundamentals | python, pandas | 🔄 |
+| 2 | Government data acquisition | requests, beautifulsoup4 | 🔄 |
+| 3 | Cleaning pipeline | pandas | ⬜ |
+| 4 | Database | SQLite | ⬜ |
+| 5 | Biomass estimation | python | ✅ *(in-browser)* |
+| 6 | GIS mapping | QGIS | ✅ *(in-browser)* |
+| 7 | Techno-economic analysis | python | ⬜ |
+| 8 | Life cycle assessment | OpenLCA | ⬜ |
+| 9 | AI assistant | LLM | ⬜ |
 
 ---
 
 ## Author
 
-Jeffrey Mancheril — MSc Biomass Technology.
+Jeffrey Saju Mancheril — MSc Biomass Technology.
 Built as a portfolio project spanning data engineering, GIS, techno-economics and LCA.
 
 _Figures are indicative and for demonstration only._
