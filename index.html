@@ -617,6 +617,7 @@ function fmt(n, d=2){
 }
 
 function fillStates(){
+  stateSel.innerHTML="";   // clear first so re-running (after data.json loads) can't duplicate options
   Object.keys(PROD).forEach(s=>{
     const o=document.createElement("option");o.value=s;o.textContent=s;stateSel.appendChild(o);
   });
