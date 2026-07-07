@@ -1,0 +1,198 @@
+{
+  "meta": {
+    "generated": "2026-07-07",
+    "source": "indicative seed (site's original figures) — to be replaced by government datasets; see SOURCES.md",
+    "n_states": 17,
+    "n_crops": 11,
+    "schema_version": 1
+  },
+  "constants": {
+    "elec_eff": 0.3,
+    "hours": 7000,
+    "home_kwh": 1000
+  },
+  "crops": {
+    "Rice": {
+      "rpr": 1.5,
+      "surplus": 0.25,
+      "lhv": 14.5,
+      "residue": "straw & husk"
+    },
+    "Wheat": {
+      "rpr": 1.6,
+      "surplus": 0.2,
+      "lhv": 15.5,
+      "residue": "straw"
+    },
+    "Sugarcane": {
+      "rpr": 0.33,
+      "surplus": 0.3,
+      "lhv": 15.0,
+      "residue": "tops & trash"
+    },
+    "Maize": {
+      "rpr": 2.0,
+      "surplus": 0.4,
+      "lhv": 16.0,
+      "residue": "stalk & cob"
+    },
+    "Cotton": {
+      "rpr": 3.0,
+      "surplus": 0.4,
+      "lhv": 16.5,
+      "residue": "stalk"
+    },
+    "Groundnut": {
+      "rpr": 2.3,
+      "surplus": 0.35,
+      "lhv": 15.5,
+      "residue": "shell & haulm"
+    },
+    "Millets": {
+      "rpr": 2.0,
+      "surplus": 0.4,
+      "lhv": 15.5,
+      "residue": "stalk"
+    },
+    "Soybean": {
+      "rpr": 2.0,
+      "surplus": 0.8,
+      "lhv": 15.0,
+      "residue": "straw"
+    },
+    "Mustard": {
+      "rpr": 1.8,
+      "surplus": 0.5,
+      "lhv": 16.0,
+      "residue": "stalk"
+    },
+    "Barley": {
+      "rpr": 1.5,
+      "surplus": 0.3,
+      "lhv": 15.5,
+      "residue": "straw"
+    },
+    "Pigeonpea": {
+      "rpr": 2.5,
+      "surplus": 0.5,
+      "lhv": 15.5,
+      "residue": "stalk"
+    }
+  },
+  "production": {
+    "Punjab": {
+      "Rice": 13.0,
+      "Wheat": 17.5,
+      "Maize": 0.5,
+      "Cotton": 0.9
+    },
+    "Haryana": {
+      "Rice": 4.5,
+      "Wheat": 12.0,
+      "Cotton": 1.5,
+      "Mustard": 1.2,
+      "Maize": 0.1
+    },
+    "Uttar Pradesh": {
+      "Rice": 15.5,
+      "Wheat": 34.0,
+      "Sugarcane": 180.0,
+      "Maize": 1.0,
+      "Mustard": 0.9,
+      "Barley": 0.4,
+      "Pigeonpea": 0.3
+    },
+    "Madhya Pradesh": {
+      "Wheat": 19.0,
+      "Rice": 4.5,
+      "Maize": 3.0,
+      "Soybean": 5.5,
+      "Pigeonpea": 0.6,
+      "Cotton": 1.0
+    },
+    "Maharashtra": {
+      "Sugarcane": 85.0,
+      "Cotton": 8.5,
+      "Rice": 3.0,
+      "Maize": 2.5,
+      "Soybean": 4.5,
+      "Pigeonpea": 1.2,
+      "Millets": 1.5
+    },
+    "West Bengal": {
+      "Rice": 16.5,
+      "Wheat": 0.9,
+      "Maize": 1.0
+    },
+    "Andhra Pradesh": {
+      "Rice": 8.0,
+      "Sugarcane": 12.0,
+      "Maize": 4.0,
+      "Groundnut": 1.2,
+      "Cotton": 2.0,
+      "Millets": 0.5
+    },
+    "Telangana": {
+      "Rice": 11.0,
+      "Maize": 3.0,
+      "Cotton": 3.0
+    },
+    "Bihar": {
+      "Rice": 7.5,
+      "Wheat": 6.0,
+      "Maize": 3.5,
+      "Pigeonpea": 0.3
+    },
+    "Rajasthan": {
+      "Wheat": 11.0,
+      "Millets": 4.5,
+      "Mustard": 4.0,
+      "Maize": 2.0,
+      "Barley": 0.8,
+      "Pigeonpea": 0.1
+    },
+    "Gujarat": {
+      "Cotton": 9.0,
+      "Groundnut": 3.5,
+      "Wheat": 3.5,
+      "Rice": 2.0,
+      "Millets": 1.0,
+      "Maize": 0.7
+    },
+    "Karnataka": {
+      "Rice": 4.0,
+      "Maize": 4.5,
+      "Sugarcane": 30.0,
+      "Millets": 2.0,
+      "Groundnut": 0.6,
+      "Cotton": 0.8,
+      "Pigeonpea": 0.8
+    },
+    "Tamil Nadu": {
+      "Rice": 7.5,
+      "Sugarcane": 25.0,
+      "Maize": 2.5,
+      "Groundnut": 1.2,
+      "Millets": 0.5,
+      "Cotton": 0.3
+    },
+    "Odisha": {
+      "Rice": 8.5,
+      "Maize": 0.8,
+      "Pigeonpea": 0.2
+    },
+    "Chhattisgarh": {
+      "Rice": 8.0,
+      "Maize": 0.7,
+      "Wheat": 0.3
+    },
+    "Assam": {
+      "Rice": 5.2,
+      "Maize": 0.2
+    },
+    "Kerala": {
+      "Rice": 0.62,
+      "Groundnut": 0.02
+    }
+  }
+}

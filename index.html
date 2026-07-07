@@ -569,7 +569,7 @@
    crop params: rpr = residue-to-product ratio,
                 surplus = fraction not already spoken for,
                 lhv = lower heating value (MJ/kg) */
-const CROPS = {
+let CROPS = {
   Rice:      { rpr:1.5,  surplus:0.25, lhv:14.5, residue:"straw & husk" },
   Wheat:     { rpr:1.6,  surplus:0.20, lhv:15.5, residue:"straw" },
   Sugarcane: { rpr:0.33, surplus:0.30, lhv:15.0, residue:"tops & trash" },
@@ -583,7 +583,7 @@ const CROPS = {
   Pigeonpea: { rpr:2.5,  surplus:0.50, lhv:15.5, residue:"stalk" }
 };
 
-const PROD = {
+let PROD = {
   "Punjab":         { Rice:13.0, Wheat:17.5, Maize:0.5, Cotton:0.9 },
   "Haryana":        { Rice:4.5,  Wheat:12.0, Cotton:1.5, Mustard:1.2, Maize:0.1 },
   "Uttar Pradesh":  { Rice:15.5, Wheat:34.0, Sugarcane:180.0, Maize:1.0, Mustard:0.9, Barley:0.4, Pigeonpea:0.3 },
@@ -603,9 +603,9 @@ const PROD = {
   "Kerala":         { Rice:0.62, Groundnut:0.02 }
 };
 
-const ELEC_EFF = 0.30;      // biomass power conversion efficiency
-const HOURS = 7000;         // effective operating hours / yr
-const HOME_KWH = 1000;      // indicative Indian household kWh / yr
+let ELEC_EFF = 0.30;      // biomass power conversion efficiency
+let HOURS = 7000;         // effective operating hours / yr
+let HOME_KWH = 1000;      // indicative Indian household kWh / yr
 
 const $ = id => document.getElementById(id);
 const stateSel = $("state"), cropSel = $("crop"), eff = $("eff");
@@ -656,6 +656,34 @@ function calc(){
 }
 
 fillStates(); fillCrops(); calc();
+
+/* ---------- load data.json (source of truth) ----------
+   The CROPS/PROD literals above are a built-in FALLBACK so the page is never
+   blank. On load we fetch data.json (produced by pipeline/build_data.py from
+   the CSVs in data/raw/) and, if it succeeds, replace the numbers in place.
+   Edit the CSVs -> rerun the pipeline -> the live site updates. No code edits. */
+async function loadData(){
+  try{
+    const res = await fetch('data.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const d = await res.json();
+    if(d && d.crops)      CROPS = d.crops;
+    if(d && d.production)  PROD  = d.production;
+    if(d && d.constants){
+      if(d.constants.elec_eff != null) ELEC_EFF = d.constants.elec_eff;
+      if(d.constants.hours    != null) HOURS    = d.constants.hours;
+      if(d.constants.home_kwh != null) HOME_KWH = d.constants.home_kwh;
+    }
+    const keep = stateSel.value;               // preserve current selection
+    fillStates();
+    if([...stateSel.options].some(o=>o.value===keep)) stateSel.value = keep;
+    fillCrops(); calc();
+    console.info('IBIP: loaded data.json ('+Object.keys(PROD).length+' states).');
+  }catch(err){
+    console.warn('IBIP: data.json not loaded — using built-in fallback data.', err);
+  }
+}
+loadData();
 stateSel.addEventListener("change",()=>{fillCrops();calc();});
 cropSel.addEventListener("change",calc);
 eff.addEventListener("input",calc);
