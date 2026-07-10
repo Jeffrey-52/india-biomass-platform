@@ -161,8 +161,10 @@ def build():
     return {
         "meta": {
             "generated": date.today().isoformat(),
-            "source": "indicative seed (site's original figures) — "
-                      "to be replaced by government datasets; see SOURCES.md",
+            "source": "Production: DES Area-Production-Yield 2022-23 (district data "
+                      "aggregated to state). Residue ratios: National Biomass Atlas. "
+                      "See SOURCES.md.",
+            "production_year": "2022-23",
             "n_states": len(production),
             "n_crops": len(crops),
             "schema_version": 1,
