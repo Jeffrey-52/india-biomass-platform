@@ -1,82 +1,132 @@
 state,crop,production_mt_per_year
-Punjab,Rice,13.0
-Punjab,Wheat,17.5
-Punjab,Maize,0.5
-Punjab,Cotton,0.9
-Haryana,Rice,4.5
-Haryana,Wheat,12.0
-Haryana,Cotton,1.5
-Haryana,Mustard,1.2
-Haryana,Maize,0.1
-Uttar Pradesh,Rice,15.5
-Uttar Pradesh,Wheat,34.0
-Uttar Pradesh,Sugarcane,180.0
-Uttar Pradesh,Maize,1.0
-Uttar Pradesh,Mustard,0.9
-Uttar Pradesh,Barley,0.4
-Uttar Pradesh,Pigeonpea,0.3
-Madhya Pradesh,Wheat,19.0
-Madhya Pradesh,Rice,4.5
-Madhya Pradesh,Maize,3.0
-Madhya Pradesh,Soybean,5.5
-Madhya Pradesh,Pigeonpea,0.6
-Madhya Pradesh,Cotton,1.0
-Maharashtra,Sugarcane,85.0
-Maharashtra,Cotton,8.5
-Maharashtra,Rice,3.0
-Maharashtra,Maize,2.5
-Maharashtra,Soybean,4.5
-Maharashtra,Pigeonpea,1.2
-Maharashtra,Millets,1.5
-West Bengal,Rice,16.5
-West Bengal,Wheat,0.9
-West Bengal,Maize,1.0
-Andhra Pradesh,Rice,8.0
-Andhra Pradesh,Sugarcane,12.0
-Andhra Pradesh,Maize,4.0
-Andhra Pradesh,Groundnut,1.2
-Andhra Pradesh,Cotton,2.0
-Andhra Pradesh,Millets,0.5
-Telangana,Rice,11.0
-Telangana,Maize,3.0
-Telangana,Cotton,3.0
-Bihar,Rice,7.5
-Bihar,Wheat,6.0
-Bihar,Maize,3.5
-Bihar,Pigeonpea,0.3
-Rajasthan,Wheat,11.0
-Rajasthan,Millets,4.5
-Rajasthan,Mustard,4.0
-Rajasthan,Maize,2.0
-Rajasthan,Barley,0.8
-Rajasthan,Pigeonpea,0.1
-Gujarat,Cotton,9.0
-Gujarat,Groundnut,3.5
-Gujarat,Wheat,3.5
-Gujarat,Rice,2.0
-Gujarat,Millets,1.0
-Gujarat,Maize,0.7
-Karnataka,Rice,4.0
-Karnataka,Maize,4.5
-Karnataka,Sugarcane,30.0
-Karnataka,Millets,2.0
-Karnataka,Groundnut,0.6
-Karnataka,Cotton,0.8
-Karnataka,Pigeonpea,0.8
-Tamil Nadu,Rice,7.5
-Tamil Nadu,Sugarcane,25.0
-Tamil Nadu,Maize,2.5
-Tamil Nadu,Groundnut,1.2
-Tamil Nadu,Millets,0.5
-Tamil Nadu,Cotton,0.3
-Odisha,Rice,8.5
-Odisha,Maize,0.8
-Odisha,Pigeonpea,0.2
-Chhattisgarh,Rice,8.0
-Chhattisgarh,Maize,0.7
-Chhattisgarh,Wheat,0.3
-Assam,Rice,5.2
-Assam,Maize,0.2
-Kerala,Rice,0.62
-Kerala,Groundnut,0.02
-
+Punjab,Rice,13.751
+Punjab,Wheat,16.567
+Punjab,Sugarcane,7.506
+Punjab,Maize,0.41
+Punjab,Cotton,0.075
+Punjab,Mustard,0.07
+Punjab,Barley,0.021
+Haryana,Rice,5.921
+Haryana,Wheat,11.064
+Haryana,Maize,0.016
+Haryana,Cotton,0.17
+Haryana,Millets,1.337
+Haryana,Mustard,1.415
+Haryana,Barley,0.046
+Uttar Pradesh,Rice,16.562
+Uttar Pradesh,Wheat,38.07
+Uttar Pradesh,Sugarcane,239.436
+Uttar Pradesh,Maize,1.952
+Uttar Pradesh,Groundnut,0.115
+Uttar Pradesh,Millets,2.369
+Uttar Pradesh,Soybean,0.011
+Uttar Pradesh,Mustard,1.909
+Uttar Pradesh,Barley,0.591
+Uttar Pradesh,Pigeonpea,0.428
+Madhya Pradesh,Rice,13.126
+Madhya Pradesh,Wheat,34.977
+Madhya Pradesh,Sugarcane,0.785
+Madhya Pradesh,Maize,4.621
+Madhya Pradesh,Cotton,0.151
+Madhya Pradesh,Groundnut,0.797
+Madhya Pradesh,Millets,1.338
+Madhya Pradesh,Soybean,6.332
+Madhya Pradesh,Mustard,1.961
+Madhya Pradesh,Barley,0.039
+Madhya Pradesh,Pigeonpea,0.146
+Maharashtra,Rice,3.963
+Maharashtra,Wheat,2.301
+Maharashtra,Sugarcane,135.754
+Maharashtra,Maize,3.888
+Maharashtra,Cotton,1.46
+Maharashtra,Groundnut,0.335
+Maharashtra,Millets,2.24
+Maharashtra,Soybean,6.699
+Maharashtra,Pigeonpea,0.859
+West Bengal,Rice,15.841
+West Bengal,Wheat,0.557
+West Bengal,Sugarcane,1.443
+West Bengal,Maize,2.29
+West Bengal,Groundnut,0.238
+West Bengal,Mustard,0.817
+Andhra Pradesh,Rice,8.42
+Andhra Pradesh,Sugarcane,3.079
+Andhra Pradesh,Maize,2.75
+Andhra Pradesh,Cotton,0.263
+Andhra Pradesh,Groundnut,0.6
+Andhra Pradesh,Millets,0.373
+Andhra Pradesh,Soybean,0.027
+Andhra Pradesh,Pigeonpea,0.078
+Telangana,Rice,17.212
+Telangana,Sugarcane,2.929
+Telangana,Maize,2.865
+Telangana,Cotton,1.002
+Telangana,Groundnut,0.253
+Telangana,Millets,0.129
+Telangana,Soybean,0.326
+Telangana,Pigeonpea,0.202
+Bihar,Rice,7.873
+Bihar,Wheat,6.6
+Bihar,Sugarcane,14.452
+Bihar,Maize,4.829
+Bihar,Soybean,0.017
+Bihar,Mustard,0.107
+Bihar,Barley,0.012
+Bihar,Pigeonpea,0.024
+Rajasthan,Rice,0.577
+Rajasthan,Wheat,11.321
+Rajasthan,Sugarcane,0.315
+Rajasthan,Maize,2.123
+Rajasthan,Cotton,0.472
+Rajasthan,Groundnut,1.934
+Rajasthan,Millets,6.491
+Rajasthan,Soybean,1.207
+Rajasthan,Mustard,6.684
+Rajasthan,Barley,1.126
+Gujarat,Rice,2.396
+Gujarat,Wheat,4.104
+Gujarat,Sugarcane,13.461
+Gujarat,Maize,0.857
+Gujarat,Cotton,1.7
+Gujarat,Groundnut,4.531
+Gujarat,Millets,1.34
+Gujarat,Soybean,0.373
+Gujarat,Mustard,0.604
+Gujarat,Pigeonpea,0.283
+Karnataka,Rice,4.356
+Karnataka,Wheat,0.2
+Karnataka,Sugarcane,62.142
+Karnataka,Maize,5.912
+Karnataka,Cotton,0.517
+Karnataka,Groundnut,0.581
+Karnataka,Millets,2.05
+Karnataka,Soybean,0.545
+Karnataka,Pigeonpea,0.937
+Tamil Nadu,Rice,7.557
+Tamil Nadu,Sugarcane,17.658
+Tamil Nadu,Maize,2.99
+Tamil Nadu,Cotton,0.054
+Tamil Nadu,Groundnut,0.912
+Tamil Nadu,Millets,0.633
+Tamil Nadu,Pigeonpea,0.045
+Odisha,Rice,11.933
+Odisha,Sugarcane,0.394
+Odisha,Maize,0.251
+Odisha,Groundnut,0.083
+Odisha,Millets,0.037
+Chhattisgarh,Rice,11.224
+Chhattisgarh,Wheat,0.207
+Chhattisgarh,Sugarcane,0.162
+Chhattisgarh,Maize,0.474
+Chhattisgarh,Groundnut,0.038
+Chhattisgarh,Millets,0.029
+Chhattisgarh,Soybean,0.027
+Chhattisgarh,Mustard,0.017
+Chhattisgarh,Pigeonpea,0.026
+Assam,Rice,6.045
+Assam,Wheat,0.013
+Assam,Sugarcane,1.299
+Assam,Maize,0.429
+Assam,Mustard,0.251
+Kerala,Rice,0.593
+Kerala,Sugarcane,0.01
