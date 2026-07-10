@@ -435,6 +435,67 @@
 </section>
 
 
+<!-- CHP SIZING (engineering layer) -->
+<section id="chp">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The engineering layer · techno-economics</span>
+      <h2>Could that residue actually run a power plant?</h2>
+      <p>The estimator says how much energy is out there. This asks the engineer's follow-up: choose a plant size and see whether the selected state's collectable residue can feed it &mdash; with indicative cost. It uses the state loaded in the estimator above and the same collection setting.</p>
+    </div>
+
+    <div class="calc reveal">
+      <div class="calc-controls">
+        <div class="calc-panel-title">Plant</div>
+        <div class="field">
+          <label>State <span class="slider-val" id="chpState">&mdash;</span></label>
+        </div>
+        <div class="field">
+          <label for="chpSize">Target plant size <span class="slider-val" id="chpSizeVal">15 MW</span></label>
+          <input type="range" id="chpSize" min="1" max="50" value="15" step="1" />
+        </div>
+        <div class="formula" aria-hidden="true">
+          feedstock =<br>
+          &nbsp;&nbsp;<b>plant MW</b> &times; <b>hours</b><br>
+          &nbsp;&nbsp;&divide; <span class="g">efficiency</span> &divide; <span class="g">heating value</span>
+        </div>
+      </div>
+
+      <div class="calc-out">
+        <div class="headline-out">
+          <div class="k">Feedstock this plant needs</div>
+          <div class="big" id="chpFeed">&mdash; <u>Mt/yr</u></div>
+          <div class="sub" id="chpVerdict">Select a state in the estimator above.</div>
+        </div>
+        <div class="grid-out">
+          <div class="cell">
+            <div class="k">Collectable in state</div>
+            <div class="v" id="chpAvail">&mdash;<span>Mt/yr</span></div>
+            <div class="note">all crops, at set collection</div>
+          </div>
+          <div class="cell">
+            <div class="k">Plants supportable</div>
+            <div class="v" id="chpPlants">&mdash;<span>&times;</span></div>
+            <div class="note">of this size, from surplus</div>
+          </div>
+          <div class="cell">
+            <div class="k">Indicative capex</div>
+            <div class="v" id="chpCapex">&mdash;<span>&#8377;cr</span></div>
+            <div class="note">at &#8377;7 cr / MW</div>
+          </div>
+          <div class="cell">
+            <div class="k">Indicative LCOE</div>
+            <div class="v" id="chpLcoe">&mdash;<span>&#8377;/kWh</span></div>
+            <div class="note">simple model, see note</div>
+          </div>
+        </div>
+        <p class="disclaimer">Techno-economics are indicative teaching figures: capex &asymp; &#8377;7 cr/MW, O&amp;M 5%/yr of capex, feedstock &#8377;3,500/t, 20-yr life at 10% discount, 7,000 operating hours, 30% electrical efficiency. Real projects vary widely &mdash; a production IBIP would source these per project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- MAP -->
 <section id="map">
   <div class="wrap">
@@ -609,6 +670,7 @@ let HOME_KWH = 1000;      // indicative Indian household kWh / yr
 
 const $ = id => document.getElementById(id);
 const stateSel = $("state"), cropSel = $("crop"), eff = $("eff");
+const chpSize = $("chpSize");
 
 function fmt(n, d=2){
   if(n >= 100) return n.toLocaleString(undefined,{maximumFractionDigits:0});
@@ -654,6 +716,8 @@ function calc(){
     `${c} in ${s} — ${p.residue}, residue ratio ${p.rpr}, at ${eff.value}% collection.`;
 
   $("keralaNote").classList.toggle("show", s==="Kerala");
+
+  calcCHP();   // engineering layer updates whenever the estimator does
 }
 
 fillStates(); fillCrops(); calc();
@@ -698,6 +762,62 @@ document.querySelectorAll(".reveal").forEach((el,i)=>{
   io.observe(el);
 });
 
+
+/* ---------- CHP sizing (engineering layer) ----------
+   Indicative techno-economic constants. Documented on-page in the disclaimer. */
+const CHP = { capexPerMW:7.0, omPct:0.05, fuelPerT:3500, life:20, discount:0.10 };
+
+// Total recoverable biomass across ALL of a state's crops, at the current collection.
+function stateRecoverableMt(state){
+  const collection=(+eff.value)/100;
+  const crops=PROD[state]||{};
+  let mt=0;
+  for(const c in crops){ const p=CROPS[c]; if(!p) continue; mt += crops[c]*p.rpr*p.surplus*collection; }
+  return mt;
+}
+// Production-weighted average heating value (MJ/kg = GJ/t) of a state's residue.
+function stateAvgLHV(state){
+  const crops=PROD[state]||{}; let num=0, den=0;
+  for(const c in crops){ const p=CROPS[c]; if(!p) continue; num+=crops[c]*p.lhv; den+=crops[c]; }
+  return den ? num/den : 15;
+}
+function calcCHP(){
+  const s=stateSel.value, size=+chpSize.value;      // MW
+  $("chpSizeVal").textContent=size+" MW";
+  chpSize.style.backgroundSize=((size-1)/49*100)+"% 100%";
+  $("chpState").textContent=s||"\u2014";
+
+  const lhv=stateAvgLHV(s);                          // GJ/t
+  const elecMWh = size*HOURS;                        // MWh_e / yr
+  const thermalGJ = elecMWh*3.6/ELEC_EFF;            // GJ_thermal / yr
+  const feedT = thermalGJ/lhv;                       // tonnes / yr
+  const feedMt = feedT/1e6;
+
+  const availMt = stateRecoverableMt(s);             // Mt/yr collectable in state
+  const plants = feedMt>0 ? Math.floor(availMt/feedMt) : 0;
+
+  const capexCr = size*CHP.capexPerMW;               // Rs crore
+  const crf = CHP.discount*Math.pow(1+CHP.discount,CHP.life)/(Math.pow(1+CHP.discount,CHP.life)-1);
+  const annualCapexCr = capexCr*crf;
+  const omCr = capexCr*CHP.omPct;
+  const fuelCr = feedT*CHP.fuelPerT/1e7;             // Rs -> crore (1 cr = 1e7)
+  const genKWh = elecMWh*1000;                       // kWh / yr
+  const lcoe = (annualCapexCr+omCr+fuelCr)*1e7/genKWh;  // Rs/kWh
+
+  $("chpFeed").innerHTML  = fmt(feedMt)+' <u>Mt/yr</u>';
+  $("chpAvail").innerHTML = fmt(availMt)+'<span>Mt/yr</span>';
+  $("chpPlants").innerHTML= plants+'<span>\u00d7</span>';
+  $("chpCapex").innerHTML = fmt(capexCr,0)+'<span>\u20b9cr</span>';
+  $("chpLcoe").innerHTML  = lcoe.toFixed(2)+'<span>\u20b9/kWh</span>';
+
+  const ratio = feedMt>0 ? availMt/feedMt : 0;
+  $("chpVerdict").textContent = s
+    ? (availMt>=feedMt
+        ? s+" can feed a "+size+" MW plant \u2014 collectable residue is "+fmt(availMt)+" Mt/yr, about "+ratio.toFixed(1)+"\u00d7 what this plant needs."
+        : s+"'s collectable residue ("+fmt(availMt)+" Mt/yr) is below the "+fmt(feedMt)+" Mt/yr this "+size+" MW plant needs \u2014 try a smaller plant or higher collection.")
+    : "Select a state in the estimator above.";
+}
+chpSize.addEventListener("input", calcCHP);
 
 /* ---------- interactive map ---------- */
 (function(){
