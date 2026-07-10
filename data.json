@@ -1,7 +1,8 @@
 {
   "meta": {
-    "generated": "2026-07-07",
-    "source": "indicative seed (site's original figures) — to be replaced by government datasets; see SOURCES.md",
+    "generated": "2026-07-10",
+    "source": "Production: DES Area-Production-Yield 2022-23 (district data aggregated to state). Residue ratios: National Biomass Atlas. See SOURCES.md.",
+    "production_year": "2022-23",
     "n_states": 17,
     "n_crops": 11,
     "schema_version": 1
@@ -81,118 +82,169 @@
   },
   "production": {
     "Punjab": {
-      "Rice": 13.0,
-      "Wheat": 17.5,
-      "Maize": 0.5,
-      "Cotton": 0.9
+      "Rice": 13.751,
+      "Wheat": 16.567,
+      "Sugarcane": 7.506,
+      "Maize": 0.41,
+      "Cotton": 0.075,
+      "Mustard": 0.07,
+      "Barley": 0.021
     },
     "Haryana": {
-      "Rice": 4.5,
-      "Wheat": 12.0,
-      "Cotton": 1.5,
-      "Mustard": 1.2,
-      "Maize": 0.1
+      "Rice": 5.921,
+      "Wheat": 11.064,
+      "Maize": 0.016,
+      "Cotton": 0.17,
+      "Millets": 1.337,
+      "Mustard": 1.415,
+      "Barley": 0.046
     },
     "Uttar Pradesh": {
-      "Rice": 15.5,
-      "Wheat": 34.0,
-      "Sugarcane": 180.0,
-      "Maize": 1.0,
-      "Mustard": 0.9,
-      "Barley": 0.4,
-      "Pigeonpea": 0.3
+      "Rice": 16.562,
+      "Wheat": 38.07,
+      "Sugarcane": 239.436,
+      "Maize": 1.952,
+      "Groundnut": 0.115,
+      "Millets": 2.369,
+      "Soybean": 0.011,
+      "Mustard": 1.909,
+      "Barley": 0.591,
+      "Pigeonpea": 0.428
     },
     "Madhya Pradesh": {
-      "Wheat": 19.0,
-      "Rice": 4.5,
-      "Maize": 3.0,
-      "Soybean": 5.5,
-      "Pigeonpea": 0.6,
-      "Cotton": 1.0
+      "Rice": 13.126,
+      "Wheat": 34.977,
+      "Sugarcane": 0.785,
+      "Maize": 4.621,
+      "Cotton": 0.151,
+      "Groundnut": 0.797,
+      "Millets": 1.338,
+      "Soybean": 6.332,
+      "Mustard": 1.961,
+      "Barley": 0.039,
+      "Pigeonpea": 0.146
     },
     "Maharashtra": {
-      "Sugarcane": 85.0,
-      "Cotton": 8.5,
-      "Rice": 3.0,
-      "Maize": 2.5,
-      "Soybean": 4.5,
-      "Pigeonpea": 1.2,
-      "Millets": 1.5
+      "Rice": 3.963,
+      "Wheat": 2.301,
+      "Sugarcane": 135.754,
+      "Maize": 3.888,
+      "Cotton": 1.46,
+      "Groundnut": 0.335,
+      "Millets": 2.24,
+      "Soybean": 6.699,
+      "Pigeonpea": 0.859
     },
     "West Bengal": {
-      "Rice": 16.5,
-      "Wheat": 0.9,
-      "Maize": 1.0
+      "Rice": 15.841,
+      "Wheat": 0.557,
+      "Sugarcane": 1.443,
+      "Maize": 2.29,
+      "Groundnut": 0.238,
+      "Mustard": 0.817
     },
     "Andhra Pradesh": {
-      "Rice": 8.0,
-      "Sugarcane": 12.0,
-      "Maize": 4.0,
-      "Groundnut": 1.2,
-      "Cotton": 2.0,
-      "Millets": 0.5
+      "Rice": 8.42,
+      "Sugarcane": 3.079,
+      "Maize": 2.75,
+      "Cotton": 0.263,
+      "Groundnut": 0.6,
+      "Millets": 0.373,
+      "Soybean": 0.027,
+      "Pigeonpea": 0.078
     },
     "Telangana": {
-      "Rice": 11.0,
-      "Maize": 3.0,
-      "Cotton": 3.0
+      "Rice": 17.212,
+      "Sugarcane": 2.929,
+      "Maize": 2.865,
+      "Cotton": 1.002,
+      "Groundnut": 0.253,
+      "Millets": 0.129,
+      "Soybean": 0.326,
+      "Pigeonpea": 0.202
     },
     "Bihar": {
-      "Rice": 7.5,
-      "Wheat": 6.0,
-      "Maize": 3.5,
-      "Pigeonpea": 0.3
+      "Rice": 7.873,
+      "Wheat": 6.6,
+      "Sugarcane": 14.452,
+      "Maize": 4.829,
+      "Soybean": 0.017,
+      "Mustard": 0.107,
+      "Barley": 0.012,
+      "Pigeonpea": 0.024
     },
     "Rajasthan": {
-      "Wheat": 11.0,
-      "Millets": 4.5,
-      "Mustard": 4.0,
-      "Maize": 2.0,
-      "Barley": 0.8,
-      "Pigeonpea": 0.1
+      "Rice": 0.577,
+      "Wheat": 11.321,
+      "Sugarcane": 0.315,
+      "Maize": 2.123,
+      "Cotton": 0.472,
+      "Groundnut": 1.934,
+      "Millets": 6.491,
+      "Soybean": 1.207,
+      "Mustard": 6.684,
+      "Barley": 1.126
     },
     "Gujarat": {
-      "Cotton": 9.0,
-      "Groundnut": 3.5,
-      "Wheat": 3.5,
-      "Rice": 2.0,
-      "Millets": 1.0,
-      "Maize": 0.7
+      "Rice": 2.396,
+      "Wheat": 4.104,
+      "Sugarcane": 13.461,
+      "Maize": 0.857,
+      "Cotton": 1.7,
+      "Groundnut": 4.531,
+      "Millets": 1.34,
+      "Soybean": 0.373,
+      "Mustard": 0.604,
+      "Pigeonpea": 0.283
     },
     "Karnataka": {
-      "Rice": 4.0,
-      "Maize": 4.5,
-      "Sugarcane": 30.0,
-      "Millets": 2.0,
-      "Groundnut": 0.6,
-      "Cotton": 0.8,
-      "Pigeonpea": 0.8
+      "Rice": 4.356,
+      "Wheat": 0.2,
+      "Sugarcane": 62.142,
+      "Maize": 5.912,
+      "Cotton": 0.517,
+      "Groundnut": 0.581,
+      "Millets": 2.05,
+      "Soybean": 0.545,
+      "Pigeonpea": 0.937
     },
     "Tamil Nadu": {
-      "Rice": 7.5,
-      "Sugarcane": 25.0,
-      "Maize": 2.5,
-      "Groundnut": 1.2,
-      "Millets": 0.5,
-      "Cotton": 0.3
+      "Rice": 7.557,
+      "Sugarcane": 17.658,
+      "Maize": 2.99,
+      "Cotton": 0.054,
+      "Groundnut": 0.912,
+      "Millets": 0.633,
+      "Pigeonpea": 0.045
     },
     "Odisha": {
-      "Rice": 8.5,
-      "Maize": 0.8,
-      "Pigeonpea": 0.2
+      "Rice": 11.933,
+      "Sugarcane": 0.394,
+      "Maize": 0.251,
+      "Groundnut": 0.083,
+      "Millets": 0.037
     },
     "Chhattisgarh": {
-      "Rice": 8.0,
-      "Maize": 0.7,
-      "Wheat": 0.3
+      "Rice": 11.224,
+      "Wheat": 0.207,
+      "Sugarcane": 0.162,
+      "Maize": 0.474,
+      "Groundnut": 0.038,
+      "Millets": 0.029,
+      "Soybean": 0.027,
+      "Mustard": 0.017,
+      "Pigeonpea": 0.026
     },
     "Assam": {
-      "Rice": 5.2,
-      "Maize": 0.2
+      "Rice": 6.045,
+      "Wheat": 0.013,
+      "Sugarcane": 1.299,
+      "Maize": 0.429,
+      "Mustard": 0.251
     },
     "Kerala": {
-      "Rice": 0.62,
-      "Groundnut": 0.02
+      "Rice": 0.593,
+      "Sugarcane": 0.01
     }
   }
 }
