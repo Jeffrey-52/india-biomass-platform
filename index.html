@@ -671,6 +671,7 @@ let HOME_KWH = 1000;      // indicative Indian household kWh / yr
 const $ = id => document.getElementById(id);
 const stateSel = $("state"), cropSel = $("crop"), eff = $("eff");
 const chpSize = $("chpSize");
+const CHP = { capexPerMW:7.0, omPct:0.05, fuelPerT:3500, life:20, discount:0.10 };  // techno-economic constants (shown on-page)
 
 function fmt(n, d=2){
   if(n >= 100) return n.toLocaleString(undefined,{maximumFractionDigits:0});
@@ -763,9 +764,7 @@ document.querySelectorAll(".reveal").forEach((el,i)=>{
 });
 
 
-/* ---------- CHP sizing (engineering layer) ----------
-   Indicative techno-economic constants. Documented on-page in the disclaimer. */
-const CHP = { capexPerMW:7.0, omPct:0.05, fuelPerT:3500, life:20, discount:0.10 };
+/* ---------- CHP sizing (engineering layer) ---------- */
 
 // Total recoverable biomass across ALL of a state's crops, at the current collection.
 function stateRecoverableMt(state){
