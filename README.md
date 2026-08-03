@@ -1,86 +1,115 @@
 # India Biomass Intelligence Platform (IBIP)
 
-An open, learning-first project that turns India's fragmented crop-residue data into
-**energy intelligence** — from government tables all the way to Life Cycle Assessment.
-
-This repository currently holds the **project's public landing page**: a single, dependency-free
-`index.html` with a live, in-browser biomass estimator. It is designed to grow alongside the
-data-engineering pipeline described below.
+An open, learning-first project that turns India's crop-residue data into **energy
+intelligence** — from official government tables to techno-economics, GIS and
+(next) Life Cycle Assessment. It is the analytical engine behind a wider goal: a
+**data-backed proposal for a hybrid renewable energy system for India**.
 
 **Live demo:** **https://india-biomass-platform.vercel.app**
+
+The whole thing is a single, dependency-free `index.html` fed by a small Python
+data pipeline. No framework, no build step, no server.
 
 ---
 
 ## Current status
 
 - ✅ Interactive biomass estimator (state × crop × collection efficiency)
-- ✅ Interactive India choropleth map (recoverable residue by state)
-- ✅ Live public landing page
-- 🔄 Government data pipeline (real CSVs → clean `data.json`)
-- ⬜ CHP sizing & techno-economics
-- ⬜ Life Cycle Assessment (LCA) module
+- ✅ Interactive India choropleth map **with click-to-drill-into-districts**
+- ✅ CHP sizing & techno-economics (plant size → feedstock, cost, LCOE)
+- ✅ **Real government data** — DES *Area, Production & Yield* 2022-23, district-level
+- ✅ Reproducible data pipeline (official file → clean `data.json` / `districts.json`)
+- ✅ Live public site (auto-deploys from GitHub via Vercel)
+- 🔄 Life Cycle Assessment (LCA) / carbon module — *next*
+- ⬜ Hybrid renewable energy system proposal for India (career deliverable)
 - ⬜ Natural-language query assistant
-- ⬜ Full dashboard
 
-*This is a learning-first project, built and released in layers. Each stage is usable on its own.*
+*Built and released in layers — each stage is usable on its own.*
 
 ---
 
 ## What the site shows
 
-- **The gap** — why India's ~500 Mt/yr of crop residue is currently hard to count.
+- **The gap** — why India's ~500 Mt/yr of crop residue is hard to count and largely burned.
 - **A live estimator** — pick a state and crop, set a collection efficiency, and see recoverable
   biomass, energy content, equivalent power capacity, and homes powered. Runs entirely client-side.
-- **An interactive choropleth map** — recoverable residue by state, rendered from open India
-  district geometry (dissolved to states with Shapely). Hover to read a state; click to load it
-  into the estimator. Covers 17 states across 11 crops.
-- **The pipeline** — the eight-stage architecture from government data to an AI assistant.
-- **The roadmap** — the nine build phases, learning-first.
+- **An interactive choropleth map** — recoverable residue by state; **click a state to enlarge it
+  into its districts**, each coloured by biomass with a per-district crop breakdown.
+- **A CHP techno-economics panel** — choose a plant size and see the feedstock it needs, how much
+  the state can supply, how many plants the surplus supports, indicative capex and LCOE.
 
 ### The estimator formula
 
 ```
-available biomass = production × residue-to-product ratio × surplus factor × collection efficiency
+recoverable biomass = production × residue-to-product ratio × surplus factor × collection efficiency
 ```
 
-All input figures are **indicative**, drawn from public agricultural statistics and biomass-atlas
-residue ratios. The production platform will pull exact numbers from source government datasets.
+**Production** is now **real 2022-23 government data** (DES, district-level, aggregated to state).
+**Residue ratios / surplus / heating values** are sourced estimates from the National Biomass
+Atlas — see [`SOURCES.md`](SOURCES.md) for full provenance and honest caveats.
+
+---
+
+## Data pipeline
+
+```
+Official DES 2022-23 export (.xls)        National Biomass Atlas ratios (data/raw/crops.csv)
+                 |                                          |
+   pipeline/adapt_gov_data.py  →  data/raw/production.csv   |
+                 |                                          |
+   pipeline/build_data.py       →  data.json  ←─────────────┘
+   pipeline/build_districts.py  →  districts.json
+                 |
+            index.html (estimator · map + district drill-down · CHP)
+```
+
+Update the data by editing a CSV and rerunning a script — no code changes. Every build is
+validated (bad rows fail loudly). The ~14 MB raw government file stays out of the repo
+(see `.gitignore`); download it from DES to regenerate.
+
+---
+
+## Where this is going
+
+The platform is the evidence base for a **hybrid renewable energy system design study for a
+representative Indian region** — combining feedstock assessment (done), unused-land mapping,
+biomass-plus-solar sizing, logistics, techno-economics and a transparent LCA, grounded in
+published literature and official energy-demand data. Scoped deliberately to a defensible case,
+with the method framed as India-applicable.
 
 ---
 
 ## Tech
 
-Plain HTML, CSS and vanilla JavaScript — no build step, no framework, no dependencies.
-That makes it trivial to host anywhere static (Vercel, GitHub Pages, Netlify).
+Plain HTML, CSS and vanilla JavaScript for the site; Python + pandas for the pipeline.
+No framework, no build step — trivial to host anywhere static.
 
 Type: Fraunces (display) · Public Sans (body) · IBM Plex Mono (data).
 
----
-
 ## Run locally
 
-Just open `index.html` in a browser. Or serve it:
-
 ```bash
-python -m http.server 8000
-# then visit http://localhost:8000
+python -m http.server 8000   # then open http://localhost:8000
+# regenerate data (needs the DES .xls in the repo root):
+pip install pandas
+python3 pipeline/adapt_gov_data.py && python3 pipeline/build_data.py && python3 pipeline/build_districts.py
 ```
 
 ---
 
-## Roadmap (the wider platform)
+## Roadmap
 
-| Phase | Focus | Tools | Status |
-|------:|-------|-------|:------:|
-| 1 | Python fundamentals | python, pandas | 🔄 |
-| 2 | Government data acquisition | requests, beautifulsoup4 | 🔄 |
-| 3 | Cleaning pipeline | pandas | ⬜ |
-| 4 | Database | SQLite | ⬜ |
-| 5 | Biomass estimation | python | ✅ *(in-browser)* |
-| 6 | GIS mapping | QGIS | ✅ *(in-browser)* |
-| 7 | Techno-economic analysis | python | ⬜ |
-| 8 | Life cycle assessment | OpenLCA | ⬜ |
-| 9 | AI assistant | LLM | ⬜ |
+| Phase | Focus | Status |
+|------:|-------|:------:|
+| 1 | Python fundamentals (pandas pipeline) | ✅ |
+| 2 | Government data acquisition (DES APY 2022-23) | ✅ |
+| 3 | Cleaning & validation pipeline | ✅ |
+| 4 | Database | — *(not needed at this scale)* |
+| 5 | Biomass estimation | ✅ |
+| 6 | GIS mapping + district drill-down | ✅ |
+| 7 | Techno-economic analysis (CHP) | ✅ |
+| 8 | Life cycle assessment | 🔄 |
+| 9 | Hybrid-system proposal + AI assistant | ⬜ |
 
 ---
 
@@ -89,4 +118,4 @@ python -m http.server 8000
 Jeffrey Saju Mancheril — MSc Biomass Technology.
 Built as a portfolio project spanning data engineering, GIS, techno-economics and LCA.
 
-_Figures are indicative and for demonstration only._
+_Production figures are official DES 2022-23; residue ratios are sourced estimates. See SOURCES.md._
