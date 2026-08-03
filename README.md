@@ -20,6 +20,8 @@ data pipeline. No framework, no build step, no server.
 - ✅ **Real government data** — DES *Area, Production & Yield* 2022-23, district-level
 - ✅ Reproducible data pipeline (official file → clean `data.json` / `districts.json`)
 - ✅ Live public site (auto-deploys from GitHub via Vercel)
+- ✅ **Existing bio-power capacity by state + "opportunity" view** (MNRE, 31 Mar 2025)
+- ✅ **Open-data downloads** + an About / method + sources page
 - 🔄 Life Cycle Assessment (LCA) / carbon module — *next*
 - ⬜ Hybrid renewable energy system proposal for India (career deliverable)
 - ⬜ Natural-language query assistant
@@ -37,6 +39,10 @@ data pipeline. No framework, no build step, no server.
   into its districts**, each coloured by biomass with a per-district crop breakdown.
 - **A CHP techno-economics panel** — choose a plant size and see the feedstock it needs, how much
   the state can supply, how many plants the surplus supports, indicative capex and LCOE.
+
+- **Supply vs existing plants** &mdash; each state's recoverable residue next to its installed
+  bio-power capacity, flagging where there's lots of surplus but few plants (the opportunity).
+- **Open data** &mdash; download every dataset (JSON/CSV) to study or build on.
 
 ### The estimator formula
 

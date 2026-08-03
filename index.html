@@ -301,6 +301,27 @@
   .dv-tile .dvv{font-family:"IBM Plex Mono",monospace;font-size:10.5px;opacity:.85}
   .dv-detail{margin-top:10px;font-size:12.5px;color:var(--ink);min-height:18px;border-top:1px solid var(--line);padding-top:8px;line-height:1.4}
   .dv-detail b{color:var(--field)}
+
+  /* supply table + data + about */
+  .tbl-wrap{overflow-x:auto}
+  .supply-tbl{width:100%;border-collapse:collapse;font-size:14px}
+  .supply-tbl th,.supply-tbl td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+  .supply-tbl th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);font-weight:600;vertical-align:bottom}
+  .supply-tbl th small,.supply-tbl td small{font-weight:400;text-transform:none;letter-spacing:0}
+  .supply-tbl td.num,.supply-tbl th.num{text-align:right;font-family:"IBM Plex Mono",monospace}
+  .supply-tbl tbody tr:hover,.supply-tbl tr:hover{background:var(--paper)}
+  .opp{color:var(--field);font-weight:600;font-size:12px;font-family:"IBM Plex Mono",monospace}
+  .dl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+  .dl{display:flex;flex-direction:column;gap:4px;padding:15px 16px;border:1px solid var(--line);border-radius:5px;text-decoration:none;color:var(--ink);background:var(--paper);transition:border-color .15s,transform .1s}
+  .dl:hover{border-color:var(--straw);transform:translateY(-2px)}
+  .dl b{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--field)}
+  .dl span{font-size:12.5px;color:var(--ink-2);line-height:1.4}
+  .about-cols{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+  @media(max-width:760px){.about-cols{grid-template-columns:1fr}}
+  .about-cols h3{font-size:15px;margin:0 0 6px;color:var(--field)}
+  .about-cols h3:not(:first-child){margin-top:20px}
+  .about-cols p{font-size:13.5px;color:var(--ink-2);line-height:1.6;margin:0}
+  .about-cols code{font-family:"IBM Plex Mono",monospace;font-size:12.5px;background:var(--paper);padding:2px 5px;border-radius:3px}
 </style>
 </head>
 <body>
@@ -625,6 +646,111 @@
   </div>
 </section>
 
+
+<!-- SUPPLY vs EXISTING PLANTS -->
+<section id="supply">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Supply &amp; existing capacity</span>
+      <h2>Where the surplus is &mdash; and where the plants aren't.</h2>
+      <p>Each state's recoverable crop residue (this project's data) next to its <em>existing</em>
+      installed bio-power capacity (MNRE, 31 Mar 2025). States with a lot of surplus but little
+      capacity are where new plants &mdash; or other uses like biogas, pellets or co-firing &mdash;
+      make the most sense. Much existing capacity is <em>bagasse</em> cogeneration at sugar mills,
+      so states rich in non-sugar residue (mustard, millets, soybean, cotton stalk) with low
+      capacity are the clearest openings.</p>
+    </div>
+    <div class="tbl-wrap reveal">
+      <table class="supply-tbl">
+        <thead>
+          <tr><th>State</th><th class="num">Recoverable residue<br><small>Mt / yr @55%</small></th><th class="num">Existing bio-power<br><small>MW</small></th><th>&nbsp;</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Uttar Pradesh</td><td class="num">26.5</td><td class="num">1,986</td><td></td></tr>
+          <tr><td>Maharashtra</td><td class="num">18.9</td><td class="num">2,907</td><td></td></tr>
+          <tr><td>Madhya Pradesh</td><td class="num">18.6</td><td class="num">92</td><td><span class="opp">◆ opportunity</span></td></tr>
+          <tr><td>Rajasthan</td><td class="num">11.7</td><td class="num">134</td><td><span class="opp">◆ opportunity</span></td></tr>
+          <tr><td>Karnataka</td><td class="num">9.5</td><td class="num">1,869</td><td></td></tr>
+          <tr><td>Gujarat</td><td class="num">6.9</td><td class="num">65</td><td><span class="opp">◆ opportunity</span></td></tr>
+          <tr><td>Punjab</td><td class="num">6.4</td><td class="num">300</td><td></td></tr>
+          <tr><td>Telangana</td><td class="num">6.2</td><td class="num">158</td><td><span class="opp">◆ opportunity</span></td></tr>
+          <tr><td>Bihar</td><td class="num">5.8</td><td class="num">112</td><td><span class="opp">◆ opportunity</span></td></tr>
+          <tr><td>West Bengal</td><td class="num">5.0</td><td class="num">300</td><td></td></tr>
+          <tr><td>Haryana</td><td class="num">4.6</td><td class="num">151</td><td></td></tr>
+          <tr><td>Tamil Nadu</td><td class="num">4.6</td><td class="num">969</td><td></td></tr>
+          <tr><td>Andhra Pradesh</td><td class="num">3.8</td><td class="num">378</td><td></td></tr>
+          <tr><td>Chhattisgarh</td><td class="num">2.6</td><td class="num">272</td><td></td></tr>
+          <tr><td>Odisha</td><td class="num">2.6</td><td class="num">50</td><td></td></tr>
+          <tr><td>Assam</td><td class="num">1.6</td><td class="num">2</td><td></td></tr>
+          <tr><td>Kerala</td><td class="num">0.1</td><td class="num">71</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="disclaimer" style="margin-top:16px">Existing capacity is shown at <b>state level</b>
+    (MNRE state-wise installed renewable capacity, 31 Mar 2025 &mdash; biomass power + bagasse
+    cogeneration). Individual plant coordinates would need a geolocated dataset (e.g. WRI Global
+    Power Plant Database) and can be added later. "Opportunity" flags states with &ge;5 Mt/yr
+    residue and comparatively low installed capacity.</p>
+  </div>
+</section>
+
+<!-- OPEN DATA -->
+<section id="data">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Open data</span>
+      <h2>Take the data and do your own study.</h2>
+      <p>Everything the site computes is downloadable. Use it, check it, build on it.</p>
+    </div>
+    <div class="dl-grid reveal">
+      <a class="dl" href="data.json" download><b>data.json</b><span>state &times; crop production + residue params (17 states, 11 crops)</span></a>
+      <a class="dl" href="districts.json" download><b>districts.json</b><span>per-district recoverable biomass, energy, top crop (569 districts)</span></a>
+      <a class="dl" href="data/raw/production.csv" download><b>production.csv</b><span>DES 2022-23 state &times; crop production (Mt/yr)</span></a>
+      <a class="dl" href="data/raw/crops.csv" download><b>crops.csv</b><span>residue ratios, surplus factor, heating value per crop</span></a>
+      <a class="dl" href="data/raw/bio_power_capacity.csv" download><b>bio_power_capacity.csv</b><span>state-wise installed bio-power capacity (MNRE 2025)</span></a>
+      <a class="dl" href="https://github.com/Jeffrey-52/india-biomass-platform" target="_blank" rel="noopener"><b>Source &amp; pipeline &#8599;</b><span>GitHub repo: the Python pipeline that builds all of this</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / METHOD -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">About the data &amp; method</span>
+      <h2>How the numbers are made &mdash; and their limits.</h2>
+    </div>
+    <div class="about-cols reveal">
+      <div>
+        <h3>The formula</h3>
+        <p><code>recoverable = production &times; residue-ratio &times; surplus &times; collection</code>.
+        Energy = recoverable &times; heating value. Power and CHP figures follow from standard
+        conversion (30% electrical efficiency, 7,000 operating hours).</p>
+        <h3>Sources</h3>
+        <p><b>Production:</b> Directorate of Economics &amp; Statistics (DES), <i>Area, Production &amp;
+        Yield</i> 2022-23, district-level.<br>
+        <b>Residue ratios / surplus / heating values:</b> National Biomass Atlas (SSS-NIBE / MNRE).<br>
+        <b>Existing capacity:</b> MNRE state-wise installed renewable capacity, 31 Mar 2025.</p>
+      </div>
+      <div>
+        <h3>Honest caveats</h3>
+        <p>&bull; Residue ratios vary widely between studies (~0.42&ndash;3.96) &mdash; treat them as
+        sourced estimates, not exact constants.<br>
+        &bull; DES state/district figures are compiled separately from national estimates, so their
+        sum can exceed the all-India headline; per-state values are accurate, their national sum is not.<br>
+        &bull; Cotton is converted from bales (1 bale = 170 kg); "Millets" combines bajra, jowar, ragi
+        and small millets.<br>
+        &bull; Techno-economic and CHP figures are indicative teaching values.<br>
+        &bull; Existing capacity is state-level, not plant coordinates.</p>
+        <h3>Newer data</h3>
+        <p>DES has since released 2023-24 final estimates and <i>Agricultural Statistics at a Glance
+        2024</i>. Swapping to a newer year is a drop-in: replace the DES export and rerun the pipeline.
+        See <a href="SOURCES.md">SOURCES.md</a> for full provenance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="f-top">
@@ -848,6 +974,7 @@ chpSize.addEventListener("input", calcCHP);
   if(!svg) return;
   const tip=document.getElementById("mapTip");
   const stage=document.querySelector(".map-stage");
+const CAPACITY = {"Punjab": 300, "Haryana": 151, "Uttar Pradesh": 1986, "Madhya Pradesh": 92, "Maharashtra": 2907, "West Bengal": 300, "Andhra Pradesh": 378, "Telangana": 158, "Bihar": 112, "Rajasthan": 134, "Gujarat": 65, "Karnataka": 1869, "Tamil Nadu": 969, "Odisha": 50, "Chhattisgarh": 272, "Assam": 2, "Kerala": 71};
   const mrName=document.getElementById("mrName");
   const mrSub=document.getElementById("mrSub");
 
@@ -894,7 +1021,7 @@ chpSize.addEventListener("input", calcCHP);
     const total=(+ (paths.find(p=>p.dataset.name===name)?.dataset.total||0)).toFixed(1);
     const crops=Object.keys(PROD[name]||{}).length;
     mrName.textContent=name;
-    mrSub.textContent=total+" Mt recoverable · "+crops+" crop"+(crops===1?"":"s")+" · click a district below";
+    mrSub.textContent=total+" Mt recoverable · "+(CAPACITY[name]!=null?CAPACITY[name]+" MW existing bio-power · ":"")+"click a district below";
     openDistrictView(name);
   }
 
