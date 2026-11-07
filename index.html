@@ -596,6 +596,60 @@
         <p class="disclaimer">Screening-level LCA. Biogenic CO<sub>2</sub> is not counted (the carbon is part of the short cycle). Field burning: CH<sub>4</sub> 2.7 and N<sub>2</sub>O 0.07 g per kg dry matter burnt, combustion factor 0.9 for wheat and 0.8 for other crops (IPCC 2006, Vol. 4, Tables 2.5 and 2.6); dry matter 0.85 (EMEP/EEA 2023). Power plant: CH<sub>4</sub> 30 and N<sub>2</sub>O 4 kg per TJ (IPCC 2006, Vol. 2, Table 2.2), 30% electrical efficiency as in the estimator, GWP100 of 27 and 273 (IPCC AR6). Grid factor 0.675 kg/kWh is the all-India average for 2025-26 (CEA CO<sub>2</sub> Baseline Database v22, as reported by zerocarbon.org.in). Collection and haulage is my own assumption of 11 kg CO<sub>2</sub>e per tonne (about 4 litres of diesel). Most of the saving comes from the avoided grid electricity, so it depends strongly on the grid factor. Black carbon and air pollutants are not included.</p>
       </div>
     </div>
+
+    <div class="sec-head reveal" style="margin-top:64px">
+      <span class="eyebrow">Life cycle assessment &middot; per kWh</span>
+      <h2>Biomass power or coal power?</h2>
+      <p>The same residue and plant efficiency as above, now per kilowatt-hour of electricity. It compares the biomass plant with a typical Indian coal plant and with the grid average (set with the grid factor above).</p>
+    </div>
+
+    <div class="calc reveal">
+      <div class="calc-controls">
+        <div class="calc-panel-title">Settings</div>
+        <div class="field">
+          <label>Biomass fuel <span class="slider-val" id="lca2Sel">&mdash;</span></label>
+        </div>
+        <div class="field">
+          <label for="lcaCoalEff">Coal plant efficiency <span class="slider-val" id="lcaCoalEffVal">35%</span></label>
+          <input type="range" id="lcaCoalEff" min="28" max="42" value="35" step="1" />
+        </div>
+        <div class="formula" aria-hidden="true">
+          coal &nbsp;= (<b>CO<sub>2</sub></b> + <b>CH<sub>4</sub></b> + <b>N<sub>2</sub>O</b>)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;per kWh of fuel &divide; <span class="g">efficiency</span>
+        </div>
+      </div>
+
+      <div class="calc-out">
+        <div class="headline-out">
+          <div class="k">Biomass power vs a coal plant</div>
+          <div class="big" id="lca2Cut">&mdash; <u>% lower</u></div>
+          <div class="sub" id="lca2Sub">Select a state and crop in the estimator above.</div>
+        </div>
+        <div class="grid-out">
+          <div class="cell">
+            <div class="k">Biomass power</div>
+            <div class="v" id="lca2Bio">&mdash;<span>g/kWh</span></div>
+            <div class="note">collection, haulage, combustion</div>
+          </div>
+          <div class="cell">
+            <div class="k">Coal power plant</div>
+            <div class="v" id="lca2Coal">&mdash;<span>g/kWh</span></div>
+            <div class="note">stack emissions only</div>
+          </div>
+          <div class="cell">
+            <div class="k">Grid average</div>
+            <div class="v" id="lca2Grid">&mdash;<span>g/kWh</span></div>
+            <div class="note">CO<sub>2</sub> only, from the factor above</div>
+          </div>
+          <div class="cell">
+            <div class="k">Saved per MWh vs coal</div>
+            <div class="v" id="lca2Save">&mdash;<span>kg CO<sub>2</sub>e</span></div>
+            <div class="note">if biomass replaces coal</div>
+          </div>
+        </div>
+        <p class="disclaimer">Per kWh of electricity sent out, GWP100, biogenic CO<sub>2</sub> not counted. Coal: CO<sub>2</sub> 96,100, CH<sub>4</sub> 1 and N<sub>2</sub>O 1.5 kg per TJ for sub-bituminous coal (IPCC 2006, Vol. 2, Table 2.2); the 35% efficiency is my own assumption, so change the slider. Coal mining and transport are not included, so the coal figure is on the low side. Biomass: same inputs as the residue comparison above, including my 11 kg CO<sub>2</sub>e per tonne assumption for collection and haulage. Parasitic plant use of electricity is not deducted for either plant.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -972,9 +1026,24 @@ function calcLCA(){
   $("lcaGridOut").innerHTML = fmt(credit,0)+'<span>kg/t</span>';
   $("lcaKwh").textContent = fmt(kwh,0)+" kWh of electricity per tonne";
   $("lcaTotal").innerHTML = fmt(recoverable*saving/1000,2)+'<span>Mt CO<sub>2</sub>e / yr</span>';
+
+  // ---- module 2: per kWh, biomass vs coal vs grid average ----
+  const coalEff=(+$("lcaCoalEff").value)/100;
+  $("lcaCoalEffVal").textContent=$("lcaCoalEff").value+"%";
+  const bioG = own/kwh*1000;                                    // g CO2e per kWh
+  const coalG = (96100/1e3*3.6 + (1*LCA.gwpCH4+1.5*LCA.gwpN2O)/1e3*3.6)/coalEff; // kg per MWh -> g/kWh
+  const cut = (1-bioG/coalG)*100;
+  $("lca2Sel").textContent=c+" · "+s;
+  $("lca2Cut").innerHTML = fmt(cut,0)+' <u>% lower</u>';
+  $("lca2Sub").textContent = `Per kWh: biomass ${fmt(bioG,0)} g CO2e, coal plant ${fmt(coalG,0)} g, grid average ${fmt(grid*1000,0)} g.`;
+  $("lca2Bio").innerHTML = fmt(bioG,0)+'<span>g/kWh</span>';
+  $("lca2Coal").innerHTML = fmt(coalG,0)+'<span>g/kWh</span>';
+  $("lca2Grid").innerHTML = fmt(grid*1000,0)+'<span>g/kWh</span>';
+  $("lca2Save").innerHTML = fmt(coalG-bioG,0)+'<span>kg CO<sub>2</sub>e</span>';
 }
 $("lcaBurn").addEventListener("input",calcLCA);
 $("lcaGrid").addEventListener("input",calcLCA);
+$("lcaCoalEff").addEventListener("input",calcLCA);
 
 fillStates(); fillCrops(); calc();
 
