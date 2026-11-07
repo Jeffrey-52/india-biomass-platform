@@ -22,7 +22,8 @@ data pipeline. No framework, no build step, no server.
 - ✅ Live public site (auto-deploys from GitHub via Vercel)
 - ✅ **Existing bio-power capacity by state + "opportunity" view** (MNRE, 31 Mar 2026)
 - ✅ **Open-data downloads** + an About / method + sources page
-- 🔄 Life Cycle Assessment (LCA) / carbon module — *next*
+- ✅ LCA module 1: crop residue burnt in the field vs used in a biomass power plant (kg CO2e per tonne, GWP100; sourced factors in the page footnote)
+- 🔄 LCA module 2: biomass power vs the Indian grid per kWh — *next*
 - ⬜ Hybrid renewable energy system proposal for India (career deliverable)
 - ⬜ Natural-language query assistant
 

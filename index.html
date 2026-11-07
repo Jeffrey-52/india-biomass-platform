@@ -336,6 +336,7 @@
     <div class="nav-links">
       <a href="#context">The gap</a>
       <a href="#calculator">Estimator</a>
+      <a href="#lca">LCA</a>
       <a href="#map">Map</a>
     </div>
   </div>
@@ -528,6 +529,71 @@
           </div>
         </div>
         <p class="disclaimer">Techno-economics are indicative teaching figures: capex &asymp; &#8377;7 cr/MW, O&amp;M 5%/yr of capex, feedstock &#8377;3,500/t, 20-yr life at 10% discount, 7,000 operating hours, 30% electrical efficiency. Real projects vary widely &mdash; a production IBIP would source these per project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- LCA (module 1: residue burning vs power) -->
+<section id="lca">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Life cycle assessment &middot; climate impact</span>
+      <h2>Burn it in the field, or burn it in a power plant?</h2>
+      <p>Much crop residue in India is burnt on the field. This compares the climate impact (GWP100, kg CO<sub>2</sub>e) of that habit with using the same residue as fuel in a biomass power plant. It uses the crop, state and collection setting from the estimator above, and works per tonne of residue.</p>
+    </div>
+
+    <div class="calc reveal">
+      <div class="calc-controls">
+        <div class="calc-panel-title">Settings</div>
+        <div class="field">
+          <label>Residue <span class="slider-val" id="lcaSel">&mdash;</span></label>
+        </div>
+        <div class="field">
+          <label for="lcaBurn">Share that would otherwise be burnt in the field <span class="slider-val" id="lcaBurnVal">100%</span></label>
+          <input type="range" id="lcaBurn" min="0" max="100" value="100" step="5" />
+        </div>
+        <div class="field">
+          <label for="lcaGrid">Grid emission factor <span class="slider-val" id="lcaGridVal">0.675 kg/kWh</span></label>
+          <input type="range" id="lcaGrid" min="0.40" max="0.90" value="0.675" step="0.005" />
+        </div>
+        <div class="formula" aria-hidden="true">
+          field burning =<br>
+          &nbsp;&nbsp;<b>residue</b> &times; <span class="g">dry matter</span> &times; <span class="g">burnt fraction</span><br>
+          &nbsp;&nbsp;&times; (<b>CH<sub>4</sub></b> &times; 27 + <b>N<sub>2</sub>O</b> &times; 273)
+        </div>
+      </div>
+
+      <div class="calc-out">
+        <div class="headline-out">
+          <div class="k">Climate saving from using it as fuel</div>
+          <div class="big" id="lcaSave">&mdash; <u>kg CO<sub>2</sub>e / t</u></div>
+          <div class="sub" id="lcaSub">Select a state and crop in the estimator above.</div>
+        </div>
+        <div class="grid-out">
+          <div class="cell">
+            <div class="k">Open-field burning</div>
+            <div class="v" id="lcaBurnOut">&mdash;<span>kg/t</span></div>
+            <div class="note">CH<sub>4</sub> + N<sub>2</sub>O, at the share set</div>
+          </div>
+          <div class="cell">
+            <div class="k">Power plant: own emissions</div>
+            <div class="v" id="lcaPlantOut">&mdash;<span>kg/t</span></div>
+            <div class="note">collection, haulage, combustion</div>
+          </div>
+          <div class="cell">
+            <div class="k">Avoided grid electricity</div>
+            <div class="v" id="lcaGridOut">&mdash;<span>kg/t</span></div>
+            <div class="note" id="lcaKwh">&mdash;</div>
+          </div>
+          <div class="cell">
+            <div class="k">Whole recoverable amount</div>
+            <div class="v" id="lcaTotal">&mdash;<span>Mt CO<sub>2</sub>e / yr</span></div>
+            <div class="note">saving &times; recoverable residue</div>
+          </div>
+        </div>
+        <p class="disclaimer">Screening-level LCA. Biogenic CO<sub>2</sub> is not counted (the carbon is part of the short cycle). Field burning: CH<sub>4</sub> 2.7 and N<sub>2</sub>O 0.07 g per kg dry matter burnt, combustion factor 0.9 for wheat and 0.8 for other crops (IPCC 2006, Vol. 4, Tables 2.5 and 2.6); dry matter 0.85 (EMEP/EEA 2023). Power plant: CH<sub>4</sub> 30 and N<sub>2</sub>O 4 kg per TJ (IPCC 2006, Vol. 2, Table 2.2), 30% electrical efficiency as in the estimator, GWP100 of 27 and 273 (IPCC AR6). Grid factor 0.675 kg/kWh is the all-India average for 2025-26 (CEA CO<sub>2</sub> Baseline Database v22, as reported by zerocarbon.org.in). Collection and haulage is my own assumption of 11 kg CO<sub>2</sub>e per tonne (about 4 litres of diesel). Most of the saving comes from the avoided grid electricity, so it depends strongly on the grid factor. Black carbon and air pollutants are not included.</p>
       </div>
     </div>
   </div>
@@ -870,7 +936,45 @@ function calc(){
   $("keralaNote").classList.toggle("show", s==="Kerala");
 
   calcCHP();   // engineering layer updates whenever the estimator does
+  calcLCA();
 }
+
+/* ---------- LCA module 1: field burning vs biomass power ---------- */
+const LCA = {
+  dm:0.85,                          // dry-matter fraction (EMEP/EEA 2023, 3.F)
+  cf:{Wheat:0.9, _:0.8},            // combustion factor (IPCC 2006 V4 Table 2.6)
+  efCH4:2.7, efN2O:0.07,            // g per kg dry matter burnt (IPCC 2006 V4 Table 2.5)
+  gwpCH4:27.0, gwpN2O:273,          // GWP100, IPCC AR6
+  plantCH4:30, plantN2O:4,          // kg per TJ, biomass boilers (IPCC 2006 V2 Table 2.2)
+  supply:11                         // kg CO2e per t residue, collection + haulage (own assumption)
+};
+function calcLCA(){
+  const s=stateSel.value, c=cropSel.value, p=CROPS[c];
+  const share=(+$("lcaBurn").value)/100, grid=+$("lcaGrid").value;
+  $("lcaBurnVal").textContent=$("lcaBurn").value+"%";
+  $("lcaGridVal").textContent=grid.toFixed(3)+" kg/kWh";
+  $("lcaSel").textContent=c+" · "+s;
+  // per tonne of residue (fresh basis)
+  const burnt = 1000*LCA.dm*(LCA.cf[c]||LCA.cf._);                       // kg dry matter burnt
+  const burnAll = burnt*(LCA.efCH4*LCA.gwpCH4 + LCA.efN2O*LCA.gwpN2O)/1000; // kg CO2e
+  const burn = burnAll*share;
+  const tj = p.lhv*1000/1e6;                                             // TJ of fuel per tonne (MJ/kg * 1000 kg)
+  const comb = tj*(LCA.plantCH4*LCA.gwpCH4 + LCA.plantN2O*LCA.gwpN2O);
+  const own = LCA.supply + comb;
+  const kwh = p.lhv*1000/3.6*ELEC_EFF;
+  const credit = kwh*grid;
+  const saving = burn + credit - own;                                     // BAU burning minus (power route net)
+  const recoverable = PROD[s][c]*p.rpr*p.surplus*(+eff.value)/100;       // Mt
+  $("lcaSave").innerHTML = fmt(saving,1)+' <u>kg CO<sub>2</sub>e / t</u>';
+  $("lcaSub").textContent = `${c} residue in ${s}: burning gives ${fmt(burn,1)} kg CO2e per tonne, the power route avoids ${fmt(credit,0)} kg and emits ${fmt(own,0)} kg.`;
+  $("lcaBurnOut").innerHTML = fmt(burn,1)+'<span>kg/t</span>';
+  $("lcaPlantOut").innerHTML = fmt(own,1)+'<span>kg/t</span>';
+  $("lcaGridOut").innerHTML = fmt(credit,0)+'<span>kg/t</span>';
+  $("lcaKwh").textContent = fmt(kwh,0)+" kWh of electricity per tonne";
+  $("lcaTotal").innerHTML = fmt(recoverable*saving/1000,2)+'<span>Mt CO<sub>2</sub>e / yr</span>';
+}
+$("lcaBurn").addEventListener("input",calcLCA);
+$("lcaGrid").addEventListener("input",calcLCA);
 
 fillStates(); fillCrops(); calc();
 
