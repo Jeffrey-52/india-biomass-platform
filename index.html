@@ -655,7 +655,7 @@
       <span class="eyebrow">Supply &amp; existing capacity</span>
       <h2>Where the surplus is &mdash; and where the plants aren't.</h2>
       <p>Each state's recoverable crop residue (this project's data) next to its <em>existing</em>
-      installed bio-power capacity (MNRE, 31 Mar 2025). States with a lot of surplus but little
+      installed bio-power capacity (MNRE, 31 Mar 2026). States with a lot of surplus but little
       capacity are where new plants &mdash; or other uses like biogas, pellets or co-firing &mdash;
       make the most sense. Much existing capacity is <em>bagasse</em> cogeneration at sugar mills,
       so states rich in non-sugar residue (mustard, millets, soybean, cotton stalk) with low
@@ -682,13 +682,13 @@
           <tr><td>Andhra Pradesh</td><td class="num">3.8</td><td class="num">378</td><td></td></tr>
           <tr><td>Chhattisgarh</td><td class="num">2.6</td><td class="num">272</td><td></td></tr>
           <tr><td>Odisha</td><td class="num">2.6</td><td class="num">50</td><td></td></tr>
-          <tr><td>Assam</td><td class="num">1.6</td><td class="num">2</td><td></td></tr>
-          <tr><td>Kerala</td><td class="num">0.1</td><td class="num">71</td><td></td></tr>
+          <tr><td>Assam</td><td class="num">1.6</td><td class="num">0</td><td></td></tr>
+          <tr><td>Kerala</td><td class="num">0.1</td><td class="num">0</td><td></td></tr>
         </tbody>
       </table>
     </div>
     <p class="disclaimer" style="margin-top:16px">Existing capacity is shown at <b>state level</b>
-    (MNRE state-wise installed renewable capacity, 31 Mar 2025 &mdash; biomass power + bagasse
+    (MNRE state-wise installed renewable capacity, 31 Mar 2026 &mdash; biomass power + bagasse
     cogeneration). Individual plant coordinates would need a geolocated dataset (e.g. WRI Global
     Power Plant Database) and can be added later. "Opportunity" flags states with &ge;5 Mt/yr
     residue and comparatively low installed capacity.</p>
@@ -708,7 +708,7 @@
       <a class="dl" href="districts.json" download><b>districts.json</b><span>per-district recoverable biomass, energy, top crop (569 districts)</span></a>
       <a class="dl" href="data/raw/production.csv" download><b>production.csv</b><span>DES 2022-23 state &times; crop production (Mt/yr)</span></a>
       <a class="dl" href="data/raw/crops.csv" download><b>crops.csv</b><span>residue ratios, surplus factor, heating value per crop</span></a>
-      <a class="dl" href="data/raw/bio_power_capacity.csv" download><b>bio_power_capacity.csv</b><span>state-wise installed bio-power capacity (MNRE 2025)</span></a>
+      <a class="dl" href="data/raw/bio_power_capacity.csv" download><b>bio_power_capacity.csv</b><span>state-wise installed bio-power capacity (MNRE 2026)</span></a>
       <a class="dl" href="https://github.com/Jeffrey-52/india-biomass-platform" target="_blank" rel="noopener"><b>Source &amp; pipeline &#8599;</b><span>GitHub repo: the Python pipeline that builds all of this</span></a>
     </div>
   </div>
@@ -731,7 +731,7 @@
         <p><b>Production:</b> Directorate of Economics &amp; Statistics (DES), <i>Area, Production &amp;
         Yield</i> 2022-23, district-level.<br>
         <b>Residue ratios / surplus / heating values:</b> National Biomass Atlas (SSS-NIBE / MNRE).<br>
-        <b>Existing capacity:</b> MNRE state-wise installed renewable capacity, 31 Mar 2025.</p>
+        <b>Existing capacity:</b> MNRE state-wise installed renewable capacity, 31 Mar 2026.</p>
       </div>
       <div>
         <h3>Honest caveats</h3>
@@ -975,7 +975,7 @@ chpSize.addEventListener("input", calcCHP);
   if(!svg) return;
   const tip=document.getElementById("mapTip");
   const stage=document.querySelector(".map-stage");
-const CAPACITY = {"Punjab": 300, "Haryana": 151, "Uttar Pradesh": 1986, "Madhya Pradesh": 92, "Maharashtra": 2907, "West Bengal": 300, "Andhra Pradesh": 378, "Telangana": 158, "Bihar": 112, "Rajasthan": 134, "Gujarat": 65, "Karnataka": 1869, "Tamil Nadu": 969, "Odisha": 50, "Chhattisgarh": 272, "Assam": 2, "Kerala": 71};
+const CAPACITY = {"Punjab": 300, "Haryana": 151, "Uttar Pradesh": 1986, "Madhya Pradesh": 92, "Maharashtra": 2907, "West Bengal": 300, "Andhra Pradesh": 378, "Telangana": 158, "Bihar": 112, "Rajasthan": 134, "Gujarat": 65, "Karnataka": 1869, "Tamil Nadu": 969, "Odisha": 50, "Chhattisgarh": 272, "Assam": 0, "Kerala": 0};
   const mrName=document.getElementById("mrName");
   const mrSub=document.getElementById("mrSub");
 
