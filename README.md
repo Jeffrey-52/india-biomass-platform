@@ -2,10 +2,12 @@
 
 An open, learning-first project that turns India's crop-residue data into **energy
 intelligence** — from official government tables to techno-economics, GIS and
-(next) Life Cycle Assessment. It is the analytical engine behind a wider goal: a
+Life Cycle Assessment. It is the analytical engine behind a wider goal: a
 **data-backed proposal for a hybrid renewable energy system for India**.
 
 **Live demo:** **https://india-biomass-platform.vercel.app**
+
+Added a screening-level LCA module (IPCC factors, GWP100) comparing crop-residue burning, biomass power and coal power per tonne and per kWh.
 
 The whole thing is a single, dependency-free `index.html` fed by a small Python
 data pipeline. No framework, no build step, no server.
@@ -115,7 +117,7 @@ python3 pipeline/adapt_gov_data.py && python3 pipeline/build_data.py && python3 
 | 5 | Biomass estimation | ✅ |
 | 6 | GIS mapping + district drill-down | ✅ |
 | 7 | Techno-economic analysis (CHP) | ✅ |
-| 8 | Life cycle assessment | 🔄 |
+| 8 | Life cycle assessment | ✅ |
 | 9 | Hybrid-system proposal + AI assistant | ⬜ |
 
 ---
